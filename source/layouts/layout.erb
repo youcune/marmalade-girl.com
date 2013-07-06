@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <%= stylesheet_link_tag 'style' %>
+  <%= stylesheet_link_tag 'mac', media: 'only screen and (min-width : 768px)' %>
+  <%= javascript_include_tag 'jquery-2.0.2.min' %>
+  <title><%= current_page.data.title || "marmalade-girl.com" %></title>
+</head>
+<body>
+<div id="background"></div>
+<div id="container">
+  <h1><%= image_tag 'logo.png', alt: 'Marmalade Girl', id: 'logo' %></h1>
+  
+  <%= yield %>
+  
+  <div id="copy">
+    <p>
+      <%= link_to image_tag('twitter.png', alt: 'twitter', width: 22, height: 22), 'https://twitter.com/HUMMER_pzg' %>
+    </p>
+  </div>
+</div>
+</body>
+</html>

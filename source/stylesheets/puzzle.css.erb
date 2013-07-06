@@ -1,0 +1,56 @@
+body{
+  -webkit-background-size: 320px 568px;
+  background: #000000 url(<%= image_path 'puzzle_wall.jpg' %>) no-repeat fixed center center;
+  margin: 0;
+  padding: 0;
+}
+h1{
+  color: #ffffff;
+  text-align: center;
+}
+#container{
+  height: 400px;
+  left: 20px;
+  position: absolute;
+  top: 80px;
+  width: 280px;
+}
+#board{
+  border: 1px #ffffff dashed;
+  height: 240px;
+  left: 20px;
+  position: absolute;
+  top: 20px;
+  width: 240px;
+}
+.piece{
+  -webkit-background-size: 240px 240px;
+  background-image: url(<%= image_path 'puzzle_front.jpg' %>);
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  height: 60px;
+  position: absolute;
+  top: 280px;
+  width: 60px;
+}
+.selected{
+  border: 1px solid #ff0000;
+}
+#hints{
+  position: absolute;
+  text-align: center;
+  top: 360px;
+  width: 100%;
+}
+button{
+  background: #cccccc;
+  color: #333333;
+  border-color: #999999;
+  border-radius: 2px;
+  border-style: solid;
+  border-width: 0 1px 1px 0;
+  font-size: 80%;
+  font-weight: bold;
+  opacity: 0.9;
+  padding: 4px;
+}

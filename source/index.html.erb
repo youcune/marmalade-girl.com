@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <%= stylesheet_link_tag 'puzzle' %>
+  <%= javascript_include_tag 'jquery-2.0.2.min' %>
+  <%= javascript_include_tag 'puzzle' %>
+  <title>marmalade-girl.com</title>
+</head>
+<body>
+<h1>入口を探せ</h1>
+<div id="container">
+  <div id="board"></div>
+  <div class="piece" style="left: 20px; background-position: -120px -180px;"></div>
+  <div class="piece" style="left: 30px; background-position: 0px -180px;"></div>
+  <div class="piece" style="left: 40px; background-position: -120px 0px;"></div>
+  <div class="piece" style="left: 50px; background-position: 0px -120px;"></div>
+  <div class="piece" style="left: 60px; background-position: 0px -60px;"></div>
+  <div class="piece" style="left: 70px; background-position: 0px 0px;"></div>
+  <div class="piece" style="left: 80px; background-position: -60px 0px;"></div>
+  <div class="piece" style="left: 90px; background-position: -120px -120px;"></div>
+  <div class="piece" style="left: 100px; background-position: -180px 0px;"></div>
+  <div class="piece" style="left: 110px; background-position: -60px -180px;"></div>
+  <div class="piece" style="left: 120px; background-position: -60px -120px;"></div>
+  <div class="piece" style="left: 130px; background-position: -180px -60px;"></div>
+  <div class="piece" style="left: 140px; background-position: -120px -60px;"></div>
+  <div class="piece" style="left: 150px; background-position: -180px -120px;"></div>
+  <div class="piece" style="left: 160px; background-position: -60px -60px;"></div>
+  <div class="piece" style="left: 170px; background-position: -180px -180px;"></div>
+  <div id="hints">
+    <button id="hint1">ヒント1</button>
+    <button id="hint2">ヒント2</button>
+    <button id="hint3">ヒント3</button>
+    <%= image_tag 'puzzle_back.jpg', width: 1, height: 1, style: 'display: none;' %>
+  </div>
+</div><!-- end of #container -->
+</body>
+</html>

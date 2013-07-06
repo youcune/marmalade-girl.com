@@ -1,0 +1,93 @@
+var is_flipped = false;
+var is_moving = false;
+var is_hinted3 = false;
+var z_index = 0;
+var start_top = 0;
+var start_left = 0;
+var start_x = 0;
+var start_y = 0;
+$(function(){
+  if(navigator.userAgent.indexOf('iPhone') < 0){
+    alert('「入口を探せ」のゲームはiPhoneの方のみ楽しめます。あなたはiPhoneじゃないので入口までご案内します。');
+    location.href = 'profile.html';
+  }
+  else if('ondevicemotion' in window){
+    // OK
+  }
+  else{
+    alert('「入口を探せ」のゲームが動かなさそうなので入口までご案内します。');
+    location.href = 'profile.html';
+  }
+  $('.piece').bind('touchstart', function(){
+    event.preventDefault();
+    if($(this).hasClass('selected')){
+      start_top = parseInt($(this).css('top'));
+      start_left = parseInt($(this).css('left'));
+      start_x = event.pageX;
+      start_y = event.pageY;
+      is_moving = true;
+    }
+  });
+  $('.piece').bind('touchmove', function(){
+    event.preventDefault();
+    if($(this).hasClass('selected') && is_moving){
+      $(this)
+        .css('left', start_left + (event.changedTouches[0].pageX - start_x))
+        .css('top', start_top + (event.changedTouches[0].pageY - start_y));
+    }
+  });
+  $('.piece').bind('touchend', function(){
+    event.preventDefault();
+    $('.piece').removeClass('selected');
+    if(is_flipped){
+      alert('ようこそ');
+      location.href = 'profile.html';
+    }
+    else if(is_moving){
+      var relative_x = parseInt($(this).css('left')) - 20;
+      var relative_y = parseInt($(this).css('top')) - 20;
+      for(var x=0; x<4; x++){
+        for(var y=0; y<4; y++){
+          var base_x = x*60;
+          var base_y = y*60;
+          if(Math.abs(relative_x - base_x) < 10 && Math.abs(relative_y - base_y) < 10){
+            $(this).css('left', base_x + 21);
+            $(this).css('top', base_y + 21);
+          }
+        }
+      }
+    }
+    else{
+      $(this)
+        .addClass('selected')
+        .css('z-index', ++z_index);
+    }
+    is_moving = false;
+  });
+  $(window).bind('devicemotion', function(event){
+    if(!is_moving){
+      if(is_hinted3){
+        var x = event.originalEvent.accelerationIncludingGravity.x;
+        var sign = x >= 0 ? 1 : -1;
+        $('#container').css('left', Math.pow(Math.abs(x) > 4 ? 4 : x, 2) * sign * 1.25 + 20);
+      }
+      
+      var z = event.originalEvent.accelerationIncludingGravity.z;
+      if (z > 8) is_flipped = true;
+      if(z < -8 && is_flipped){
+        $('.piece')
+          .css('background-image', 'url(<%= image_path 'puzzle_back.jpg' %>)');
+      }
+    }
+  });
+  $('#hint1').click(function(){
+    alert('目的は入口を探すこと。目に見えるものが全てではない。');
+  });
+  $('#hint2').click(function(){
+    alert('このパズルが遊べるのはiPhoneの人だけだ。');
+  });
+  $('#hint3').click(function(){
+    alert('このページは君の手の動きをチェックしている。ほらね。');
+    is_hinted3 = true;
+  });
+});
