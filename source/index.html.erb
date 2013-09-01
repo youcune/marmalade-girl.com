@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link rel="apple-touch-icon-precomposed" href="<%= image_path 'apple-touch-icon.png' %>"> 
   <%= stylesheet_link_tag 'puzzle' %>
   <%= javascript_include_tag 'jquery-2.0.2.min' %>
   <%= javascript_include_tag 'puzzle' %>
-  <title>marmalade-girl.com</title>
+  <title>釜揚げはまー</title>
 </head>
 <body>
 <h1>入口を探せ</h1>
@@ -29,11 +30,20 @@
   <div class="piece" style="left: 160px; background-position: -60px -60px;"></div>
   <div class="piece" style="left: 170px; background-position: -180px -180px;"></div>
   <div id="hints">
-    <button id="hint1">ヒント1</button>
-    <button id="hint2">ヒント2</button>
-    <button id="hint3">ヒント3</button>
+    見つからない人のためにヒント！<br>
+    <button class="hint countdown" id="hint1" disabled="disabled">60</button>
+    <button class="hint countdown" id="hint2" disabled="disabled">120</button>
+    <button class="hint countdown" id="hint3" disabled="disabled">300</button>
     <%= image_tag 'puzzle_back.jpg', width: 1, height: 1, style: 'display: none;' %>
   </div>
 </div><!-- end of #container -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42388188-1', 'marmalade-girl.com');
+  ga('send', 'pageview');
+</script>
 </body>
 </html>

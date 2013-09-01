@@ -1,23 +1,35 @@
+var ENTER_PATH = 'home'
 var is_flipped = false;
 var is_moving = false;
-var is_hinted3 = false;
+var is_hinted2 = false;
 var z_index = 0;
 var start_top = 0;
 var start_left = 0;
 var start_x = 0;
 var start_y = 0;
+function countdown(){
+  $('.countdown').each(function(){
+    time = +$(this).html();
+    if(time > 1){
+      $(this).html(time - 1);
+    }
+    else if(time == 1){
+      $(this)
+        .removeAttr('disabled')
+        .css('color', '#333333')
+        .html('ヒント' + $(this).attr('id').substr(-1))
+    }
+  });
+}
 $(function(){
-  if(navigator.userAgent.indexOf('iPhone') < 0){
-    alert('「入口を探せ」のゲームはiPhoneの方のみ楽しめます。あなたはiPhoneじゃないので入口までご案内します。');
-    location.href = 'profile.html';
-  }
-  else if('ondevicemotion' in window){
+  if('ondevicemotion' in window){
     // OK
   }
   else{
-    alert('「入口を探せ」のゲームが動かなさそうなので入口までご案内します。');
-    location.href = 'profile.html';
+    alert('ゲームが動かなさそうなのでもう入口までご案内します');
+    location.href = ENTER_PATH;
   }
+  setInterval("countdown()", 1000);
   $('.piece').bind('touchstart', function(){
     event.preventDefault();
     if($(this).hasClass('selected')){
@@ -41,7 +53,7 @@ $(function(){
     $('.piece').removeClass('selected');
     if(is_flipped){
       alert('ようこそ');
-      location.href = 'profile.html';
+      location.href = ENTER_PATH;
     }
     else if(is_moving){
       var relative_x = parseInt($(this).css('left')) - 20;
@@ -66,7 +78,7 @@ $(function(){
   });
   $(window).bind('devicemotion', function(event){
     if(!is_moving){
-      if(is_hinted3){
+      if(is_hinted2){
         var x = event.originalEvent.accelerationIncludingGravity.x;
         var sign = x >= 0 ? 1 : -1;
         $('#container').css('left', Math.pow(Math.abs(x) > 4 ? 4 : x, 2) * sign * 1.25 + 20);
@@ -81,13 +93,14 @@ $(function(){
     }
   });
   $('#hint1').click(function(){
-    alert('目的は入口を探すこと。目に見えるものが全てではない。');
+    alert('目に見えるものがすべてではないよ。');
   });
   $('#hint2').click(function(){
-    alert('このパズルが遊べるのはiPhoneの人だけだ。');
+    alert('このページは、実はiPhoneの動きを感知しているよ。');
+    is_hinted2 = true;
   });
   $('#hint3').click(function(){
-    alert('このページは君の手の動きをチェックしている。ほらね。');
-    is_hinted3 = true;
+    if(confirm('ヒント3を表示します（ヒント3はヒントというより答です）。'))
+      alert('実はパズルの裏面に入口が隠されているよ。');
   });
 });
