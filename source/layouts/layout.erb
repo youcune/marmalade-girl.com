@@ -1,25 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link rel="apple-touch-icon-precomposed" href="<%= image_path 'apple-touch-icon.png' %>"> 
   <%= stylesheet_link_tag 'style' %>
   <%= stylesheet_link_tag 'mac', media: 'only screen and (min-width : 768px)' %>
-  <%= javascript_include_tag 'jquery-2.0.2.min' %>
-  <title><%= current_page.data.title || "marmalade-girl.com" %></title>
+  <% if current_page.data.photo_page %>
+    <%= javascript_include_tag 'photoswipe/lib/klass.min.js' %>
+    <%= javascript_include_tag 'photoswipe/code.photoswipe-3.0.5.min.js' %>
+    <link rel="stylesheet" href="/javascripts/photoswipe/photoswipe.css" media="screen">
+    <script>
+      // Set up PhotoSwipe with all anchor tags in the Gallery container
+      (function(window, PhotoSwipe){
+        document.addEventListener('DOMContentLoaded', function(){
+          var
+            options = {},
+            instance = PhotoSwipe.attach( window.document.querySelectorAll('#photo a'), options );
+        }, false);
+      }(window, window.Code.PhotoSwipe));
+    </script>
+  <% end %>
+  <title><%= current_page.data.title || "釜揚げはまー" %></title>
 </head>
 <body>
 <div id="background"></div>
 <div id="container">
-  <h1><%= image_tag 'logo.png', alt: 'Marmalade Girl', id: 'logo' %></h1>
+  <header>
+    <h1><%= image_tag 'logo.png', alt: 'Marmalade Girl', width: 260, height: 152, id: 'logo' %></h1>
+    <nav>
+      <ul class="clearfix">
+        <li><%= link_to 'Home', '/home.html' %></li>
+        <li><%= link_to 'Profile', '/profile.html' %></li>
+        <li><%= link_to 'Photo', '/photo.html' %></li>
+        <li><%= link_to 'Blog', 'http://hummingneo.jugem.jp/' %></li>
+        <li><%= link_to 'twitter', 'https://twitter.com/HUMMER_pzg' %></li>
+      </ul>
+    </nav>
+  </header>
   
   <%= yield %>
   
-  <div id="copy">
-    <p>
-      <%= link_to image_tag('twitter.png', alt: 'twitter', width: 22, height: 22), 'https://twitter.com/HUMMER_pzg' %>
-    </p>
-  </div>
+  <footer>
+    <div id="copy">
+      <%= link_to '@HUMMER_pzg', 'https://twitter.com/HUMMER_pzg' %>
+    </div>
+  </footer>
 </div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42388188-1', 'marmalade-girl.com');
+  ga('send', 'pageview');
+</script>
 </body>
 </html>
