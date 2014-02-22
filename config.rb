@@ -72,5 +72,5 @@ activate :directory_indexes
 activate :deploy do |deploy|
   deploy.method = :sftp
   deploy.host = 'sakurambo'
-  deploy.path = '~/www/marmalade-girl.com'
+  deploy.path = '/home/girlfriend/www/marmalade-girl.com'
 end
