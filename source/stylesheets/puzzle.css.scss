@@ -1,6 +1,6 @@
 body{
+  background: #000000 image-url('puzzle_wall.jpg') no-repeat fixed center center;
   -webkit-background-size: 320px 568px;
-  background: #000000 url(<%= image_path 'puzzle_wall.jpg' %>) no-repeat fixed center center;
   color: #ffffff;
   font-family: 'ヒラギノ角ゴ ProN W3', HiraKakuProN-W3;
   margin: 0;
@@ -26,8 +26,8 @@ h1{
   width: 240px;
 }
 .piece{
+  background-image: image-url('puzzle_front.jpg');
   -webkit-background-size: 240px 240px;
-  background-image: url(<%= image_path 'puzzle_front.jpg' %>);
   border: 1px solid #000000;
   box-sizing: border-box;
   height: 60px;

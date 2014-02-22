@@ -1,7 +1,6 @@
 var ENTER_PATH = 'home'
 var is_flipped = false;
 var is_moving = false;
-var is_hinted2 = false;
 var z_index = 0;
 var start_top = 0;
 var start_left = 0;
@@ -22,11 +21,11 @@ function countdown(){
   });
 }
 $(function(){
-  if('ondevicemotion' in window){
+  if('touchstart' in window && 'touchmove' in window && 'touchend' in window && 'ondevicemotion' in window){
     // OK
   }
   else{
-    alert('ゲームが動かなさそうなのでもう入口までご案内します');
+    alert('ゲームの動作環境を満たしていないので入口までご案内します（iPhoneのみ対応）');
     location.href = ENTER_PATH;
   }
   setInterval("countdown()", 1000);
@@ -78,12 +77,6 @@ $(function(){
   });
   $(window).bind('devicemotion', function(event){
     if(!is_moving){
-      if(is_hinted2){
-        var x = event.originalEvent.accelerationIncludingGravity.x;
-        var sign = x >= 0 ? 1 : -1;
-        $('#container').css('left', Math.pow(Math.abs(x) > 4 ? 4 : x, 2) * sign * 1.25 + 20);
-      }
-      
       var z = event.originalEvent.accelerationIncludingGravity.z;
       if (z > 8) is_flipped = true;
       if(z < -8 && is_flipped){
@@ -97,7 +90,6 @@ $(function(){
   });
   $('#hint2').click(function(){
     alert('このページは、実はiPhoneの動きを感知しているよ。');
-    is_hinted2 = true;
   });
   $('#hint3').click(function(){
     if(confirm('ヒント3を表示します（ヒント3はヒントというより答です）。'))

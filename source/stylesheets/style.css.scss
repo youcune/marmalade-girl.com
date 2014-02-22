@@ -1,16 +1,8 @@
 body{
+  background: #000000 image-url('background.jpg') no-repeat fixed top right;
+  -webkit-background-size: 240px 568px;
   margin: 0;
   padding: 0;
-}
-div#background{
-  -webkit-background-size: 240px 568px;
-  background: #000000 url(<%= image_path 'background.jpg' %>) no-repeat fixed top right;
-  height: 100%;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: -1;
 }
 div#container{
   max-width: 640px;
@@ -55,9 +47,9 @@ div#container{
     border-radius: 4px;
     border-style: solid;
     border-width: 0 1px 1px 0px;
-    margin: 0 0 2em;
+    margin: 0 4px 2em;
     opacity: 0.7;
-    padding: 1px 8px;
+    padding: 1em 1em;
     h2{
       border-left: #000066 solid 8px;
       font-size: 100%;
@@ -74,21 +66,25 @@ div#container{
       color: #ff3333;
     }
   }
-  a.btn{
-    background: #cccccc;
-    border-radius: 12px;
-    color: #333333;
-    text-decoration: none;
-    padding: 4px 12px;
-  }
-  a.btn:hover{
-    background: #ffffff;
-  }
-  .f-left{
-    float: left;
-  }
-  .f-right{
-    float: right;
+  p.ctrl{
+    clear: both;
+    padding: 4px;
+    a.btn{
+      background: #666666;
+      border-radius: 2px;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 8px 20px;
+    }
+    a.btn:hover{
+      background: #555555;
+    }
+    .f-left{
+      float: left;
+    }
+    .f-right{
+      float: right;
+    }
   }
   div#photo{
     ul{

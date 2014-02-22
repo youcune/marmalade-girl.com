@@ -69,10 +69,4 @@ configure :build do
   # set :http_path, "/Content/images/"
 end
 
-# Set slim-lang output style
-Slim::Engine.set_default_options pretty: true
- 
-# Set template languages
-set :slim
-
 activate :directory_indexes
