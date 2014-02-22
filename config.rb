@@ -46,9 +46,7 @@ page "/", :layout => false
 # end
 
 set :css_dir, 'stylesheets'
-
 set :js_dir, 'javascripts'
-
 set :images_dir, 'images'
 
 # Build-specific configuration
@@ -70,3 +68,9 @@ configure :build do
 end
 
 activate :directory_indexes
+
+activate :deploy do |deploy|
+  deploy.method = :sftp
+  deploy.host = 'sakurambo'
+  deploy.path = '~/www/marmalade-girl.com'
+end
